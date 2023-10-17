@@ -1,0 +1,377 @@
+openapi: 3.0.3
+info:
+  title: Hacker News API
+  version: 0.0.0
+servers:
+  - url: https://hacker-news.firebaseio.com/v0
+
+paths:
+  /user/{user-id}.json:
+    get:
+      operationId: getUserById
+      tags:
+        - hn
+      summary: Get User By ID
+      description: Retrieve information about a user by their ID.
+      parameters:
+        - name: user-id
+          in: path
+          description: The user's unique username (case-sensitive).
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /maxitem.json:
+    get:
+      operationId: getMaxItemId
+      tags:
+        - hn
+      summary: Max Item ID
+      description: Get the current largest item ID.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: integer
+  /topstories.json:
+    get:
+      operationId: getTopStories
+      tags:
+        - hn
+      summary: Top Stories
+      description: Get up to 500 top stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /newstories.json:
+    get:
+      operationId: getNewStories
+      tags:
+        - hn
+      summary: New Stories
+      description: Get up to 500 new stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /beststories.json:
+    get:
+      operationId: getBestStories
+      tags:
+        - hn
+      summary: Best Stories
+      description: Get up to 500 best stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /askstories.json:
+    get:
+      operationId: getAskHNStories
+      tags:
+        - hn
+      summary: Ask HN Stories
+      description: Get up to 200 latest Ask HN stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /showstories.json:
+    get:
+      operationId: getShowHNStories
+      tags:
+        - hn
+      summary: Show HN Stories
+      description: Get up to 200 latest Show HN stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /jobstories.json:
+    get:
+      operationId: getJobHNStories
+      tags:
+        - hn
+      summary: Job HN Stories
+      description: Get up to 200 latest Job HN stories.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /item/{item-id}.json:
+    get:
+      operationId: getItemById
+      tags:
+        - hn
+      summary: Get Item By ID
+      description: Retrieve information about an item by its ID.
+      parameters:
+        - name: item-id
+          in: path
+          description: The item's unique ID.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiItem'
+                required: true
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The user's unique username (case-sensitive).
+        created:
+          type: integer
+          description: Creation date of the user in Unix Time.
+        karma:
+          type: number
+          description: The user's karma.
+        about:
+          type: string
+          description: The user's optional self-description (HTML).
+        submitted:
+          type: array
+          description: List of the user's stories, polls, and comments.
+          items:
+            type: integer
+    Job:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the job post.
+        id:
+          type: integer
+          description: The job post's unique ID.
+        score:
+          type: integer
+          description: The score of the job post.
+        text:
+          type: string
+          description: The text content of the job post.
+        time:
+          type: integer
+          description: Creation date of the job post in Unix Time.
+        title:
+          type: string
+          description: The title of the job post.
+        type:
+          type: string
+          description: The type of the item, which should be "job" for a job post.
+        url:
+          type: string
+          description: The URL associated with the job post.
+    Poll:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the poll.
+        descendants:
+          type: integer
+          description: The number of descendants (comments) for the poll.
+        id:
+          type: integer
+          description: The poll's unique ID.
+        kids:
+          type: array
+          items:
+            type: integer
+          description: An array of IDs of comments that are children of this poll.
+        parts:
+          type: array
+          items:
+            type: integer
+          description: An array of IDs of the parts of the poll.
+        score:
+          type: integer
+          description: The score of the poll.
+        text:
+          type: string
+          description: The text content of the poll.
+        time:
+          type: integer
+          description: Creation date of the poll in Unix Time.
+        title:
+          type: string
+          description: The title of the poll.
+        type:
+          type: string
+          description: The type of the item, which should be "poll" for a poll.
+    PollOpt:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the poll option.
+        id:
+          type: integer
+          description: The poll option's unique ID.
+        poll:
+          type: integer
+          description: The ID of the poll associated with this option.
+        score:
+          type: integer
+          description: The score of the poll option.
+        text:
+          type: string
+          description: The text content of the poll option.
+        time:
+          type: integer
+          description: Creation date of the poll option in Unix Time.
+        type:
+          type: string
+          description: The type of the item, which should be "pollopt" for a poll option.
+    Story:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the story.
+        descendants:
+          type: integer
+          description: The number of descendants (e.g., comments) for the story.
+        id:
+          type: integer
+          description: The story's unique ID.
+        kids:
+          type: array
+          description: >-
+            List of item IDs that are direct descendants (e.g., comments on the
+            story).
+          items:
+            type: integer
+        score:
+          type: integer
+          description: The story's score.
+        time:
+          type: integer
+          description: Creation date of the story in Unix Time.
+        title:
+          type: string
+          description: The title of the story.
+        type:
+          type: string
+          description: The type of the item, which should be "story" for a story.
+        url:
+          type: string
+          description: The URL of the story.
+    ApiComment:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the comment.
+        id:
+          type: integer
+          description: The comment's unique ID.
+        kids:
+          type: array
+          description: >-
+            List of item IDs that are direct descendants (e.g., replies) to the
+            comment.
+          items:
+            type: integer
+        parent:
+          type: integer
+          description: >-
+            The ID of the parent item (e.g., the story) that this comment
+            belongs to.
+        text:
+          type: string
+          description: The text content of the comment.
+        time:
+          type: integer
+          description: Creation date of the comment in Unix Time.
+        type:
+          type: string
+          description: The type of the item, which should be "comment" for a comment.
+    Ask:
+      type: object
+      properties:
+        by:
+          type: string
+          description: The user who created the ask post.
+        descendants:
+          type: integer
+          description: The number of descendants (e.g., comments) for the ask post.
+        id:
+          type: integer
+          description: The ask post's unique ID.
+        kids:
+          type: array
+          description: >-
+            List of item IDs that are direct descendants (e.g., comments) to the
+            ask post.
+          items:
+            type: integer
+        score:
+          type: integer
+          description: The score of the ask post.
+        text:
+          type: string
+          description: The text content of the ask post.
+        time:
+          type: integer
+          description: Creation date of the ask post in Unix Time.
+        title:
+          type: string
+          description: The title of the ask post.
+        type:
+          type: string
+          description: The type of the item, which should be "story" for an ask post.
+    ApiItem:
+      oneOf:
+        - $ref: '#/components/schemas/Job'
+        - $ref: '#/components/schemas/Poll'
+        - $ref: '#/components/schemas/PollOpt'
+        - $ref: '#/components/schemas/Story'
+        - $ref: '#/components/schemas/ApiComment'
+        - $ref: '#/components/schemas/Ask'

@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: Hacker News API
+  version: 1.0.0
+servers:
+  - url: http://hn.algolia.com/api/v1
+paths:
+  /items/{id}:
+    get:
+      operationId: getItemById
+      tags:
+        - hnSearch
+      summary: Get Item By ID
+      description: Retrieve information about an item by its ID.
+      parameters:
+        - name: id
+          in: path
+          description: The item's unique ID.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiItem'
+  /users/{username}:
+    get:
+      operationId: getUserByUsername
+      tags:
+        - hnSearch
+      summary: Get User By Username
+      description: Retrieve information about a user by their username.
+      parameters:
+        - name: username
+          in: path
+          description: The user's unique username.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /search:
+    get:
+      operationId: search
+      tags:
+        - hnSearch
+      summary: Search Items
+      description: >-
+        Search items based on a full-text query and filter on specific tags or
+        attributes.
+      parameters:
+        - name: query
+          in: query
+          description: Full-text query string.
+          required: false
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: >-
+            Filter on a specific tag. Available tags are listed in the
+            description.
+          required: false
+          schema:
+            type: string
+        - name: numericFilters
+          in: query
+          description: >-
+            Filter on a specific numerical condition. Available numerical fields
+            are listed in the description.
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /search_by_date:
+    get:
+      operationId: searchByDate
+      tags:
+        - hnSearch
+      summary: Search Items by Date
+      description: >-
+        Search items based on a full-text query and sort them by date, more
+        recent first.
+      parameters:
+        - name: query
+          in: query
+          description: Full-text query string.
+          required: false
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: >-
+            Filter on a specific tag. Available tags are listed in the
+            description.
+          required: false
+          schema:
+            type: string
+        - name: numericFilters
+          in: query
+          description: >-
+            Filter on a specific numerical condition. Available numerical fields
+            are listed in the description.
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number for pagination.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+components:
+  schemas:
+    ApiItem:
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        author:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+        text:
+          type: string
+        points:
+          type: integer
+        parent_id:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiItem'
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        about:
+          type: string
+        karma:
+          type: integer
+    SearchResult:
+      type: object
+      properties:
+        hits:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResultItem'
+        page:
+          type: integer
+        nbHits:
+          type: integer
+        nbPages:
+          type: integer
+        hitsPerPage:
+          type: integer
+        processingTimeMS:
+          type: integer
+        query:
+          type: string
+        params:
+          type: string
+    SearchResultItem:
+      type: object
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+        author:
+          type: string
+        points:
+          type: integer
+        story_text:
+          type: string
+        comment_text:
+          type: string
+        _tags:
+          type: array
+          items:
+            type: string
+        num_comments:
+          type: integer
+        objectID:
+          type: string
+        _highlightResult:
+          type: object
+          properties:
+            title:
+              type: object
+              properties:
+                value:
+                  type: string
+                matchLevel:
+                  type: string
+                matchedWords:
+                  type: array
+                  items:
+                    type: string
+            url:
+              type: object
+              properties:
+                value:
+                  type: string
+                matchLevel:
+                  type: string
+                matchedWords:
+                  type: array
+                  items:
+                    type: string
+            author:
+              type: object
+              properties:
+                value:
+                  type: string
+                matchLevel:
+                  type: string
+                matchedWords:
+                  type: array
+                  items:
+                    type: string
