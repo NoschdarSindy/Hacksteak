@@ -25,8 +25,8 @@ class ItemsList extends StatefulWidget {
   State<ItemsList> createState() => _ItemsListState();
 }
 
-class _ItemsListState extends State<ItemsList>
-// with AutomaticKeepAliveClientMixin
+class _ItemsListState
+    extends State<ItemsList> // with AutomaticKeepAliveClientMixin
 {
   late Future<List<int>?> _getItemIds;
 
@@ -70,9 +70,9 @@ class _ItemsListState extends State<ItemsList>
           }),
     );
   }
-  //
-  // @override
-  // bool get wantKeepAlive => true;
+//
+// @override
+// bool get wantKeepAlive => true;
 }
 
 class ItemsListView extends StatelessWidget {
@@ -100,7 +100,7 @@ class ItemsListView extends StatelessWidget {
     return ListView.separated(
       // physics: const BouncingScrollPhysics(),
       // key: PageStorageKey<String>(titl),
-      controller: PrimaryScrollController.of(context),
+      // controller: PrimaryScrollController.of(context),
       // _scrollController,
       // primary: true,
       // addAutomaticKeepAlives: true,
