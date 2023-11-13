@@ -1,12 +1,12 @@
 # Hacksteak 
 
 <p float="left" align="center">
-  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/fe052e08-3401-43cd-bb39-97732f8c0d69" height="30px" /><br>
+  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/2e81670b-0258-4e2b-a999-844ac117254e" height="30px" /><br>
 A cross-platform Hacker News client built with Flutter.<br><br>
-  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/07e5b605-2d63-4414-a619-08c4d6f8cc5c" width="20%" />
-  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/d3222f5f-2add-45d5-beb3-949f7f449eb3" width="20%" /> 
-  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/43912aae-3efe-40cf-a06d-29153fc98571" width="20%" />
-  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/603be237-e1de-4f0f-b895-3dab36a23734" width="20%" />
+  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/ca0315c3-cd52-4465-a382-5bf4df8abf86" width="20%" />
+  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/bab12014-723f-4908-9ce1-b92c52168f50" width="20%" /> 
+  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/d0d5171f-5455-4cc1-9abd-b43ca3eaba13" width="20%" />
+  <img src="https://github.com/NoschdarSindy/Hacksteak/assets/11724784/e4e0d1c7-059e-4704-a0a4-2607c5b97382" width="20%" />
 </p>
 <a href="https://play.google.com/store/apps/details?id=app.hacksteak.hacksteak">
 <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height=80/>
