@@ -13,6 +13,6 @@ A cross-platform Hacker News client built with Flutter.<br><br>
 </a>
 <br>
 
-Alternatively, check out the (slower) web version at [hacksteak.app](https://hacksteak.app).
+Alternatively, check out the (slower) web version at [hacksteak.app](https://hacksteak.app) (not fully functional yet).
 
 This is just a side thing of mine, so it probably wont be heavily maintained, but feel free to fork the repo.
