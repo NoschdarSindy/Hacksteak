@@ -113,16 +113,19 @@ class FontConfig extends StatelessWidget {
                       max: 2,
                       value: preferredFont.scale,
                       onChanged: (v) {
-                        context.read<LogoFadeCubit>().fadeOut();
+                        context.read<BackgroundOpacityCubit>().fadeOut();
                         context.read<SettingsCubit>().changeFontOf(
                             {component: preferredFont.copyWith(scale: v)});
                       },
                       onChangeStart: (v) {
-                        context.read<LogoFadeCubit>().fadeOut();
+                        context.read<BackgroundOpacityCubit>().fadeOut();
                       },
                       onChangeEnd: (v) {
-                        Future.delayed(const Duration(seconds: 1),
-                            () => context.read<LogoFadeCubit>().fadeIn());
+                        Future.delayed(
+                            const Duration(seconds: 1),
+                            () => context
+                                .read<BackgroundOpacityCubit>()
+                                .fadeIn());
                       },
                     ),
                   ),

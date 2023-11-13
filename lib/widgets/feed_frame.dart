@@ -1,16 +1,7 @@
-import 'package:animations/animations.dart';
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hacksteak/data/api/hn/lib/api.dart';
-import 'package:hacksteak/cubits/active_story_cubit.dart';
-import 'package:hacksteak/cubits/prefs/history/history_cubit.dart';
 
-import '../constants.dart';
-import '../cubits/prefs/prefs_service.dart';
-import '../pages/item_page.dart';
 import 'items_list.dart';
 
 // TODO: stateful

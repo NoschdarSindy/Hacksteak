@@ -1,10 +1,9 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
 import 'package:hacksteak/pages/settings/settings.comments.dart';
-import 'package:hacksteak/pages/settings/settings.story_tiles.dart';
 import 'package:hacksteak/pages/settings/settings.layout.dart';
+import 'package:hacksteak/pages/settings/settings.story_tiles.dart';
 import 'package:hacksteak/pages/settings/settings.theme.dart';
 import 'package:hacksteak/pages/settings/settings.top_bar.dart';
 
@@ -21,7 +20,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(
-        create: (context) => LogoFadeCubit(),
+        create: (context) => BackgroundOpacityCubit(),
       ),
     ], child: Builder(builder: (context) => SettingsPageView()));
   }
@@ -32,8 +31,7 @@ class SettingsPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final opacityLevel = context.watch<LogoFadeCubit>().state;
-    final prefs = context.watch<SettingsCubit>().state;
+    final opacityLevel = context.watch<BackgroundOpacityCubit>().state;
 
     return SettingsScaffold(
         child: Stack(

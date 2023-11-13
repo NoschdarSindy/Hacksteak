@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import 'package:hacksteak/api/hn/lib/api.dart';
-import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
 import 'package:hacksteak/cubits/logo_fade_cubit.dart';
-import 'package:hacksteak/widgets/items_list.dart';
-import 'package:hacksteak/widgets/item_tile.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
 
 import '../../body.dart';
-import '../../main.dart';
-import '../../widgets/mock.dart';
-import '../../widgets/settings/settings_list_view.dart';
 import '../../widgets/settings/settings_scaffold.dart';
 import '../../widgets/settings/settings_section_title.dart';
 import '../../widgets/settings/settings_ui.dart';
@@ -54,14 +46,14 @@ class LayoutSettingsView extends StatelessWidget {
                 .read<SettingsCubit>()
                 .changeSettings(prefs.copyWith.layout(maxWidth: v));
 
-            context.read<LogoFadeCubit>().fadeOut();
+            context.read<BackgroundOpacityCubit>().fadeOut();
           },
           onChangeStart: (v) {
-            context.read<LogoFadeCubit>().fadeOut();
+            context.read<BackgroundOpacityCubit>().fadeOut();
           },
           onChangeEnd: (v) {
             Future.delayed(const Duration(seconds: 1),
-                () => context.read<LogoFadeCubit>().fadeIn());
+                () => context.read<BackgroundOpacityCubit>().fadeIn());
           },
         )
       ]),

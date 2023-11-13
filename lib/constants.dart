@@ -1,6 +1,5 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 const String XS = 'XS', S = 'S', M = 'M', L = 'L', XL = 'XL', XXL = 'XXL';

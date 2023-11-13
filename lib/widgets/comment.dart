@@ -1,29 +1,18 @@
 // import 'dart:html';
 
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hacksteak/data/api/hn/lib/api.dart';
-import 'package:hacksteak/cubits/active_story_cubit.dart';
-import 'package:hacksteak/cubits/prefs/history/history_cubit.dart';
 import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
-import 'package:hacksteak/widgets/inherited_widgets.dart';
-import 'package:hacksteak/widgets/metadata.dart';
-import 'package:hacksteak/widgets/styled_text.dart';
-import 'package:html_unescape/html_unescape.dart';
-import 'package:url_launcher/link.dart';
+import 'package:hacksteak/data/api/hn/lib/api.dart';
 
 // import 'dart:html' as html;
 
 import '../constants.dart';
 import '../data/models/item.dart';
-import '../pages/item_page.dart';
 import '../util.dart';
 import 'item_tile_loading.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Comment extends StatefulWidget {
   final int itemId, level;
@@ -34,7 +23,7 @@ class Comment extends StatefulWidget {
   State<Comment> createState() => _CommentState();
 }
 
-class _CommentState extends State<Comment> {
+class _CommentState extends State<Comment> with AutomaticKeepAliveClientMixin {
   late Future<ApiItem?> _getComment;
 
   @override
@@ -45,6 +34,7 @@ class _CommentState extends State<Comment> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final prefs = context.watch<SettingsCubit>().state;
     return FutureBuilder(
         future: _getComment,
@@ -78,6 +68,9 @@ class _CommentState extends State<Comment> {
           );
         });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class CommentView extends StatelessWidget {
@@ -107,24 +100,6 @@ class CommentView extends StatelessWidget {
     final commentMetadataFont = prefs.font.commentMetadata;
     final commentMetadataFontSize =
         FontSizes.commentMetadata.spMin * prefs.font.commentMetadata.scale;
-
-    // final c = calculateContrastColor(
-    //     Theme.of(context).cardColor, Theme.of(context).primaryColor);
-
-    // final color = Theme.of(context).textTheme.bodyMedium?.color;
-    final primaryColor = Theme.of(context).primaryColor;
-
-    int phase = level % 5;
-
-    // Calculate the mapped value
-    // return
-
-    // final interpolation =
-    //     (phase <= 5 ~/ 2) ? (phase / (5 ~/ 2)) : ((5 - phase) / (5 ~/ 2));
-    //
-    // final commentColor =
-    //     Color.lerp(Theme.of(context).primaryColor, color, interpolation) ??
-    //         primaryColor;
 
     return Container(
       margin: const EdgeInsets.only(top: 16),

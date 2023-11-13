@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'cubits/logo_fade_cubit.dart';
 
 class LogoFade extends StatelessWidget {
@@ -8,7 +9,7 @@ class LogoFade extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LogoFadeCubit(),
+      create: (context) => BackgroundOpacityCubit(),
       child: LogoFadeView(),
     );
   }
@@ -20,7 +21,7 @@ class LogoFadeView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        BlocBuilder<LogoFadeCubit, double>(
+        BlocBuilder<BackgroundOpacityCubit, double>(
           builder: (context, opacityLevel) {
             return AnimatedOpacity(
               opacity: opacityLevel,
@@ -31,7 +32,7 @@ class LogoFadeView extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            context.read<LogoFadeCubit>().changeOpacity(0.5);
+            context.read<BackgroundOpacityCubit>().changeOpacity(0.5);
           },
           child: const Text('Fade Logo'),
         ),

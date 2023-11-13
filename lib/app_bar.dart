@@ -1,19 +1,12 @@
 import 'dart:math';
 
 import 'package:animations/animations.dart';
-import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hacksteak/pages/settings/settings.dart';
 import 'package:hacksteak/util.dart';
-import 'package:hacksteak/widgets/styled_text.dart';
-
-// import 'package:pixel_snap/pixel_snap.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-// import 'package:space_fixer/space_fixer.dart';
 
 import 'constants.dart';
 import 'cubits/prefs/settings/settings_cubit.dart';
@@ -59,12 +52,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () {},
       ),
     };
-
-    // final ps = PixelSnap.of(context);
-
-    double width = MediaQuery.of(context).size.width;
-    double overflowHeight = 3;
-    var overflowColor = Theme.of(context).appBarTheme.backgroundColor!;
 
     return SliverPadding(
       padding: prefs.layout.maxWidth < 0

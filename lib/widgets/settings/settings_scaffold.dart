@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hacksteak/util.dart';
-import 'package:hacksteak/widgets/styled_text.dart';
 
 import '../../cubits/logo_fade_cubit.dart';
 import '../../cubits/prefs/settings/settings_cubit.dart';
@@ -20,7 +19,7 @@ class SettingsScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final prefs = context.watch<SettingsCubit>().state;
-    final opacityLevel = context.watch<LogoFadeCubit>().state;
+    final opacityLevel = context.watch<BackgroundOpacityCubit>().state;
 
     return Scaffold(
         backgroundColor: Theme.of(context).secondaryHeaderColor,

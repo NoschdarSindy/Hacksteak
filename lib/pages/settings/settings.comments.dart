@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
 
-import '../../body.dart';
-import '../../cubits/logo_fade_cubit.dart';
 import '../../widgets/settings/settings_font_config.dart';
 import '../../widgets/settings/settings_scaffold.dart';
-import '../../widgets/settings/settings_section_title.dart';
 import '../../widgets/settings/settings_ui.dart';
 import '../item_page.dart';
 

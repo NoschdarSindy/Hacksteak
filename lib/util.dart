@@ -1,14 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hacksteak/constants.dart';
-import 'package:hacksteak/widgets/styled_text.dart';
 import 'package:html_unescape/html_unescape.dart';
-import 'package:url_launcher/link.dart';
 import 'package:linkify/linkify.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/prefs/settings/settings_cubit.dart';
 

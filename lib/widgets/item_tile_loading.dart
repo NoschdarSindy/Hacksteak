@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hacksteak/constants.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../cubits/prefs/settings/settings_cubit.dart';
 
 class ItemsListTileViewLoading extends StatelessWidget {
   const ItemsListTileViewLoading(
@@ -14,8 +10,6 @@ class ItemsListTileViewLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final prefs = context.watch<SettingsCubit>().state;
-
     return Shimmer.fromColors(
         baseColor: Theme.of(context).secondaryHeaderColor,
         highlightColor: const Color(0xFFDDDDDD),

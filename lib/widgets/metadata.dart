@@ -1,20 +1,14 @@
-import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hacksteak/data/api/hn/lib/api.dart';
-import 'package:hacksteak/cubits/active_story_cubit.dart';
-import 'package:hacksteak/cubits/prefs/history/history_cubit.dart';
 import 'package:hacksteak/cubits/prefs/settings/settings_cubit.dart';
 import 'package:hacksteak/util.dart';
-import 'package:hacksteak/widgets/styled_text.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:image_network/image_network.dart';
+ 
 import '../constants.dart';
-import '../pages/item_page.dart';
 import 'inherited_widgets.dart';
-import 'item_tile_loading.dart';
 
 class Metadata extends StatelessWidget {
   const Metadata({
@@ -84,20 +78,40 @@ class Favicon extends StatelessWidget {
     final prefs = context.watch<SettingsCubit>().state;
     final scaledSize =
         FontSizes.storyMetadata.spMin * prefs.font.storyMetadata.scale * 1.3;
+    final browserIcon = Icon(Icons.language,
+        color: Theme.of(context).textTheme.displaySmall?.color,
+        size: scaledSize * 1.1);
 
     return Container(
       // padding: EdgeInsets.only(
       //     top: MediaQuery.of(context).devicePixelRatio *
       //         FontSizes.storyMetadata.spMin /
       //         7),
-      child: CachedNetworkImage(
-        width: scaledSize,
-        height: scaledSize,
-        errorWidget: (context, url, error) => Icon(Icons.language,
-            color: Theme.of(context).textTheme.displaySmall?.color,
-            size: scaledSize * 1.1),
-        imageUrl: 'https://api.faviconkit.com/$hostUrl/48',
-      ),
+      height: scaledSize,
+      width: scaledSize,
+      child: kIsWeb
+          ? ImageNetwork(
+              image: 'https://api.faviconkit.com/$hostUrl/48',
+              height: scaledSize,
+              width: scaledSize,
+              duration: 1500,
+              curve: Curves.easeIn,
+              onPointer: true,
+              debugPrint: false,
+              fullScreen: false,
+              fitAndroidIos: BoxFit.cover,
+              fitWeb: BoxFitWeb.cover,
+              onLoading: browserIcon,
+              onError: browserIcon)
+          : CachedNetworkImage(
+              width: scaledSize,
+              height: scaledSize,
+              errorWidget: (context, url, error) {
+                print(error);
+                return browserIcon;
+              },
+              imageUrl: 'https://api.faviconkit.com/$hostUrl/48',
+            ),
     );
   }
 }

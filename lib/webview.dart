@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import 'package:webview_flutter_android/webview_flutter_android.dart';
-
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class WebView extends StatefulWidget {
@@ -38,7 +36,7 @@ class _WebViewState extends State<WebView> {
 
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      // ..setBackgroundColor(const Color(0x00000000))
+      // ..setBackgroundColor(Colors.white)
       // ..setNavigationDelegate(
       //   NavigationDelegate(
       //   ),
@@ -67,7 +65,6 @@ class _WebViewState extends State<WebView> {
   @override
   Widget build(BuildContext context) {
     return WebViewWidget(
-        controller: _controller
-          ..setBackgroundColor(Theme.of(context).cardColor));
+        controller: _controller..setBackgroundColor(Colors.white));
   }
 }
