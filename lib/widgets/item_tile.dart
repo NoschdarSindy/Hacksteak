@@ -310,31 +310,25 @@ class Thread extends StatelessWidget {
             ],
           ),
         ),
-        //
         if (widget.item.kids.isEmpty)
-          const SliverPadding(
-            padding: EdgeInsets.all(8),
-            sliver: Expanded(
-              child: SliverToBoxAdapter(
-                  child: Center(child: Text("No comments yet."))),
-            ),
-          )
+          const SliverToBoxAdapter(
+              child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Center(child: Text("No comments yet.")),
+          ))
         else
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-            sliver: KeepAlive(
-              keepAlive: true,
-              child: SliverList.separated(
-                itemCount: widget.item.kids.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Comment(itemId: widget.item.kids[index], level: 0);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 8,
-                  );
-                },
-              ),
+            sliver: SliverList.separated(
+              itemCount: widget.item.kids.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Comment(itemId: widget.item.kids[index], level: 0);
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  height: 8,
+                );
+              },
             ),
           ),
       ],
